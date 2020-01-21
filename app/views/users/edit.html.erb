@@ -1,0 +1,21 @@
+<h1>Edit Subscription</h1>
+ 
+<%= form_with(model: @email, local: true) do |form| %>
+ 
+  <p>
+    <%= form.label :email %><br>
+    <%= form.text_field :email %>
+  </p>
+ 
+  <p>
+    <%= form.label :live %><br>
+    <%= form.text_area :live %>
+  </p>
+ 
+  <p>
+    <%= form.submit %>
+  </p>
+ 
+<% end %>
+ 
+<%= link_to 'Back', users_path %>
