@@ -35,6 +35,5 @@
 yarn-debug.log*
 .yarn-integrity
 
-# Ignoring twitter api keys
-
-/lib/twitter_token
+# Ignore application configuration
+/config/application.yml
