@@ -9,8 +9,8 @@ development:
   encoding: unicode
   database: pt_db_development
   pool: 5
-  username: post_taste
-  password: wasd
+  username: ENV["db_username"]
+  password: ENV["db_password"]
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".

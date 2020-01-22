@@ -1,5 +1,4 @@
 require 'twitter'
-require './lib/twitter_token'
 
 class TwitterAPI 
 
