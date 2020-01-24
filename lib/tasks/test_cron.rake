@@ -1,5 +1,6 @@
 require './lib/twitter_api'
 require './lib/email_sender'
+require './lib/crawler/Tweeter'
 
 twitter_api = TwitterAPI.new
 email_sender = MenuEmailer.new
@@ -15,9 +16,15 @@ namespace :twitter_cron do
    end
    desc "Post tweet"
    task post_tweet: :environment do
-      puts "Posting tweet..."     
-      twitter_api.post_tweet(p ENV['tweet'])
-      puts "Done"
+      today = Date.today.strftime("%A")
+      if today != 'Saturday' && today != 'Sunday'
+         puts "Tweet posting cron job is starting..."  
+         tweeter = Tweeter.new
+         tweeter.post_tweets()
+         puts "Cron job done"
+      else
+         puts 'Today is a weekend => no tweet.'
+      end
    end
 end
 
