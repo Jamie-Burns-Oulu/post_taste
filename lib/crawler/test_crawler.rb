@@ -23,8 +23,13 @@ class WebCrawlerTest
 
     def setup_webdriver()
         puts 'Setting up webdriver'
-        options = Selenium::WebDriver::Chrome::Options.new(args: ['headless'])
-        @driver = Selenium::WebDriver.for(:chrome, options: options)
+        options = Selenium::WebDriver::Chrome::Options.new
+        chrome_bin_path = ENV.fetch('GOOGLE_CHROME_SHIM', nil)
+        options.binary = chrome_bin_path if chrome_bin_path # only use custom path on heroku
+        options.add_argument('--headless') # this may be optional
+        # options = Selenium::WebDriver::Chrome::Options.new(args: ['headless'])
+        @driver = Selenium::WebDriver.for :chrome, options: options
+        # driver = Selenium::WebDriver.for(:chrome, options: options)
         puts "Webdriver: #{@driver}"
     end
 
