@@ -1,6 +1,7 @@
 require './lib/twitter_api'
 require './lib/email_sender'
 require './lib/crawler/Tweeter'
+require './lib/crawler/test_crawler'
 
 twitter_api = TwitterAPI.new
 email_sender = MenuEmailer.new
@@ -13,6 +14,12 @@ namespace :twitter_cron do
       puts "Getting tweets..."    
       twitter_api.get_tweets
       puts "Done"
+   end
+   desc "Test webdriver"
+   task test_webdriver: :environment do
+      puts "Test cron starting.."
+      WebCrawlerTest.new
+      puts "Test cron ended."
    end
    desc "Post tweet"
    task post_tweet: :environment do
