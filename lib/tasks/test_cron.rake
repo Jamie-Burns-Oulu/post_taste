@@ -16,6 +16,7 @@ namespace :twitter_cron do
    end
    desc "Post tweet"
    task post_tweet: :environment do
+      puts 'Cron job is waking up...'
       today = Date.today.strftime("%A")
       if today != 'Saturday' && today != 'Sunday'
          puts "Tweet posting cron job is starting..."  
