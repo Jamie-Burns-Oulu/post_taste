@@ -24,8 +24,13 @@ class WebCrawler
     private
 
     def setup_webdriver()
-        options = Selenium::WebDriver::Chrome::Options.new(args: ['headless'])
-        @driver = Selenium::WebDriver.for(:chrome, options: options)
+        puts 'Setting up webdriver'
+        options = Selenium::WebDriver::Chrome::Options.new
+        puts "chromedriver ENV: #{ENV.fetch('GOOGLE_CHROME_SHIM', nil)}"
+        chrome_bin_path = ENV.fetch('GOOGLE_CHROME_SHIM', nil)
+        options.binary = chrome_bin_path if chrome_bin_path
+        options.add_argument('--headless')
+        @driver = Selenium::WebDriver.for :chrome, options: options
     end
 
     def get_menus()
