@@ -1,0 +1,23 @@
+<%# TODO Add styling %>
+
+<h1>PostTaste</h1>
+
+<div>
+<strong>Get Menu Tweets:</strong>
+  <% @restaurants.each do |restaurant| %>    
+      <button><%= link_to restaurant.name, restaurant_path(restaurant) %></button> 
+  <% end %>
+  </br>  </br>  </br>
+</div>
+
+<div>
+<strong>Today's menu from </strong>
+<% if !@tweets_array.empty? %>
+    <%= @restaurant.name %>  </br>  </br>  
+    <% @tweets_array.reverse_each do |tweet| %>
+        <%= tweet %> </br>
+    <% end %>
+<% else %>
+    <p>No menu available from <%= @restaurant.name %> today</p>
+<% end %>
+</div>
