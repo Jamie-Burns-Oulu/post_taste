@@ -1,17 +1,14 @@
-<%# TODO Add styling %>
-<div>
-  <strong>Get Menu Tweets:</strong>
+<div >
   <% @restaurants.each do |restaurant| %>
-    <button><%= link_to restaurant.name, restaurant_path(restaurant) %></button>
+    <button class="restaurants_btns"><%= link_to restaurant.name, restaurant_path(restaurant) %></button>
   <% end %>
-</br>  </br>  </br>
 </div>
-<div>
-  <strong>Today's menu from </strong>
+<div class="tweet_container">
   <% if !@tweets_one.empty? %>
-    <%= @restaurant.name %>  </br>  </br>
 <% @tweets_one.reverse_each do |tweet| %>
-  <%= tweet %> </br>
+<div class="tweet">
+  <%= tweet %>
+</div>  
 <% end %>
 <% else %>
   <p>No menu available from <%= @restaurant.name %> today</p>
