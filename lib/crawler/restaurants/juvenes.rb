@@ -45,6 +45,6 @@ class Juvenes
 
     def open_connection()
         @driver.get('https://www.juvenes.fi/oulu/en')
-
+        @driver.manage.timeouts.implicit_wait = 2
     end
 end

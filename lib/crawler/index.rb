@@ -48,34 +48,39 @@ class WebCrawler
     def format_tweet()
         list_of_tweets = []
         max_menus = 6
-        emoji_array = ['🍴', '🍽', '🍕', '🍗', '🍔', '🍰', '🌮', '🥗', '🥩', '🥦', '🥓', '🥨', '🍻']
-        for restaurant in @list_of_restaurants do
-            part_n_of_tweet = 1
-            i = 1
-            j = -1
-            recommends = rand(1..restaurant.get_menus().length)
-            tweet_title_are_many = restaurant.get_menus().length > max_menus
-            emoji = emoji_array[rand(0..emoji_array.length-1)]
-            tweet = ''
-            tweet += "#{restaurant.get_restaurant_name().upcase} #{ tweet_title_are_many ? "Part #{part_n_of_tweet}" : "" } #{emoji}\n\n"
-            for menu in restaurant.get_menus() do
-                emoji = emoji_array[rand(0..emoji_array.length-1)]
-                
-                if i > max_menus || tweet.length >= 230
-                    j = j > i ? j : i
-                    part_n_of_tweet += 1
+        emoji_array = ['🍴', '🍽', '🍕', '🍗', '🍔', '🍰', '🌮', '🥗', '🥩', '🥦', '🥓', '🥨', '🍻', '🌯', '🍩', '🍤']
+        if @list_of_restaurants.length
+            for restaurant in @list_of_restaurants do
+                if restaurant.get_menus().length
+                    part_n_of_tweet = 1
+                    i = 1
+                    j = -1
+                    recommends = rand(1..restaurant.get_menus().length)
+                    max_length_of_menus = restaurant.get_menus().length > max_menus
+                    emoji = emoji_array[rand(0..emoji_array.length-1)]
+                    tweet = ''
+                    tweet += "#{restaurant.get_restaurant_name().upcase} #{ max_length_of_menus ? "Part #{part_n_of_tweet}" : "" } #{emoji}\n\n"
+                    for menu in restaurant.get_menus() do
+                        if menu.length
+                            emoji = emoji_array[rand(0..emoji_array.length-1)]
+                            if i > max_menus || tweet.length >= 230
+                                j = j > i ? j : i
+                                part_n_of_tweet += 1
+                                tweet += "\n#PT_#{restaurant.get_restaurant_name().upcase}"
+                                list_of_tweets.push(tweet)
+                                i = 1
+                                tweet = "#{restaurant.get_restaurant_name().upcase} Part #{part_n_of_tweet} #{emoji}\n\n"
+                            end
+                            tweet += "#{i > j ? i : j}. #{menu}\n"
+                            i += 1
+                            j += 1
+                        end
+                    end
+                    tweet += "\n#PT_RECOMMENDS #{recommends} 🔥"
                     tweet += "\n#PT_#{restaurant.get_restaurant_name().upcase}"
                     list_of_tweets.push(tweet)
-                    i = 1
-                    tweet = "#{restaurant.get_restaurant_name().upcase} Part #{part_n_of_tweet} #{emoji}\n\n"
                 end
-                tweet += "#{i > j ? i : j}. #{menu}\n"
-                i += 1
-                j += 1
             end
-            tweet += "\n#PT_RECOMMENDS #{recommends} 🔥"
-            tweet += "\n#PT_#{restaurant.get_restaurant_name().upcase}"
-            list_of_tweets.push(tweet)
         end
         return list_of_tweets
     end
