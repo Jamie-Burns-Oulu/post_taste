@@ -6,4 +6,4 @@ class SendDailyMenu
         puts user.email
       end
     end
-  end
+end
