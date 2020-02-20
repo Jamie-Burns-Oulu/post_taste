@@ -15,6 +15,10 @@ class TwitterAPI
     @client.search("from:post_taste #{res}").take(10).each
   end
 
+  def get_all_tweets() 
+    @client.search("from:post_taste}").take(20).each
+  end
+
   def post_tweet(content)
     @client.update("#{content}")
   end
