@@ -16,7 +16,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = user.find(params[:id])
+    @user = User.find(params[:id])
    
     if @user.update(user_params)
       redirect_to @user
@@ -25,15 +25,33 @@ class UsersController < ApplicationController
     end
   end
 
+  # def create
+  #   @user = User.new(user_params)
+    
+  #   if @user.save
+  #     redirect_to @user
+  #   else
+  #     render 'new'
+  #   end
+  # end
+
   def create
     @user = User.new(user_params)
-    
-    if @user.save
-      redirect_to @user
-    else
-      render 'new'
+ 
+    respond_to do |format|
+      if @user.save
+        # Tell the UserMailer to send a welcome email after save
+        UserMailer.with(user: @user).welcome_email.deliver_later
+ 
+        format.html { redirect_to(@user, notice: 'User was successfully created.') }
+        format.json { render json: @user, status: :created, location: @user }
+      else
+        format.html { render action: 'new' }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
     end
   end
+
      
   private
     def user_params

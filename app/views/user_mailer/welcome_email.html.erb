@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+  <h1>Welcome to PostTaste</h1>   
+  <div>
+    <strong>All menus for today</strong>
+    <% if !@tweets_all.empty? %>
+    <% @tweets_all.reverse_each do |tweet| %>
+      <%= tweet %> 
+    <% end %>
+    <% else %>
+     <p>No menus available today</p>
+    <% end %>
+  </div>
+    <p>Thanks for joining and have a great day!</p>
+    <p>The PostTaste Team</p>
+  </body>
+</html>
