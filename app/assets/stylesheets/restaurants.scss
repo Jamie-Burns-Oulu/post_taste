@@ -1,26 +1,68 @@
-.restaurants_btns {
-  float: left;
-  padding: 12px;
-  color: white;
-  text-decoration: none;
-  font-size: 17px;
-  width: 18%;
-  text-align: center;
-  margin: 1%;
+$twitter_color: #1DA1F2;
+.restaurant_list_container {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
   margin-bottom: 30px;
+  & .restaurant_list {
+    display: flex;
+    justify-content: space-evenly;
+    & a.button:not(:last-child) {
+      margin-right: 20px;
+    }
+  }
 }
 
 .tweet_container{
-  background-color: rgb(164, 197, 224);
-  width:700px;
-  height:700px;
-  margin:auto;
-  margin-top: 150px;
-  padding: 5px;
-  padding-top: 20px;
-}
-
-.tweet{
-  margin-bottom:10px;
-  margin-left:5px;
+  width:100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  & h2 {
+    font-weight: 300;
+  } 
+  & .tweet {
+    margin-bottom:40px;
+    padding: 50px;
+    margin-left:5px;
+    border: 1px solid rgba($color: #000000, $alpha: 0.2);
+    border-radius: 10px;
+    box-shadow: 0 10px 6px -6px #777;
+    width: 40%;
+    & .tweet_header_container {
+      display: flex;
+      width: 150px;
+      margin-bottom: 10px;
+      justify-content: space-between;
+      & .tweet_icon img {
+        width: 50px;
+        background: #E1E8ED;
+        height: 50px;
+        border: 1px solid rgba(143, 149, 153, 0.226);
+        border-radius: 50%;
+      }
+      & .twitter_name a {
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        color: black;
+        & img {
+          width: 18px;
+        }
+        &:hover {
+          color: $twitter_color;
+        }
+      }
+      & .twitter_handle {
+        color: black;
+        opacity: 0.6;
+      }
+    }
+    & .tweet_footer {
+      position: relative;
+      top: 20px;
+      opacity: 0.6;
+    }
+  }
 }

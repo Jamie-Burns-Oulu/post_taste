@@ -1,4 +1,5 @@
 require '././lib/twitter_api'
+require 'date'
 
 class RestaurantsController < ApplicationController
 
@@ -10,12 +11,13 @@ class RestaurantsController < ApplicationController
         @restaurants = Restaurant.all             
 
         @tweets_all = Array[]
-
+        @tweet_time = Array[]
         @@twitterAPI.get_all_tweets().each do |tweet|          
             # Checking tweets creation date against today's date             
             @createdString = tweet.created_at.to_s
             if @createdString[0..9] == @@timeString 
                 @tweets_all.push(tweet.full_text)
+                @tweet_time.push(tweet.created_at)
             end            
         end
     end
@@ -25,12 +27,14 @@ class RestaurantsController < ApplicationController
         @restaurant = Restaurant.find(params[:id])      
 
         @tweets_one = Array[]
+        @tweets_time = Array[]
 
         @@twitterAPI.get_tweets(@restaurant.name).each do |tweet|  
             # Checking tweets creation date against today's date   
             @createdString = tweet.created_at.to_s
             if @createdString[0..9] == @@timeString 
                 @tweets_one.push(tweet.full_text)
+                @tweets_time.push(tweet.created_at)
             end        
         end
     end

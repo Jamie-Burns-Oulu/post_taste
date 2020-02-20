@@ -61,20 +61,18 @@ class WebCrawler
                     tweet = ''
                     tweet += "#{restaurant.get_restaurant_name().upcase} #{ max_length_of_menus ? "Part #{part_n_of_tweet}" : "" } #{emoji}\n\n"
                     for menu in restaurant.get_menus() do
-                        if menu.length
-                            emoji = emoji_array[rand(0..emoji_array.length-1)]
-                            if i > max_menus || tweet.length >= 230
-                                j = j > i ? j : i
-                                part_n_of_tweet += 1
-                                tweet += "\n#PT_#{restaurant.get_restaurant_name().upcase}"
-                                list_of_tweets.push(tweet)
-                                i = 1
-                                tweet = "#{restaurant.get_restaurant_name().upcase} Part #{part_n_of_tweet} #{emoji}\n\n"
-                            end
-                            tweet += "#{i > j ? i : j}. #{menu}\n"
-                            i += 1
-                            j += 1
+                        emoji = emoji_array[rand(0..emoji_array.length-1)]
+                        if i > max_menus || tweet.length >= 230
+                            j = j > i ? j : i
+                            part_n_of_tweet += 1
+                            tweet += "\n#PT_#{restaurant.get_restaurant_name().upcase}"
+                            list_of_tweets.push(tweet)
+                            i = 1
+                            tweet = "#{restaurant.get_restaurant_name().upcase} Part #{part_n_of_tweet} #{emoji}\n\n"
                         end
+                        tweet += "#{i > j ? i : j}. #{menu}\n"
+                        i += 1
+                        j += 1
                     end
                     tweet += "\n#PT_RECOMMENDS #{recommends} 🔥"
                     tweet += "\n#PT_#{restaurant.get_restaurant_name().upcase}"
