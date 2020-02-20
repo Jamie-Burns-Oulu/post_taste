@@ -22,11 +22,12 @@ class Uniresta
     def get_kastari_menus()
         kastari_menus = @driver.find_elements(css: "div.lunchlist-holder#{@kastari_lunchlist_holder} div##{@weekday} .food-list p")
         kastari = Restaurant.new('Kastari')
-        kastari_menus = kastari_menus[1..] #remove first element
-        for menu_item in kastari_menus do
-            kastari.add_menu(menu_item.text.strip)
+        if kastari_menus.length
+            kastari_menus = kastari_menus[1..] #remove first element
+            for menu_item in kastari_menus do
+                kastari.add_menu(menu_item.text.strip)
+            end
         end
-        
         return kastari
     end
     
