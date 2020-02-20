@@ -1,0 +1,15 @@
+<div >
+  <% @restaurants.each do |restaurant| %>
+    <button class="restaurants_btns"><%= link_to restaurant.name, restaurant_path(restaurant) %></button>
+  <% end %>
+</div>
+<div>
+  <strong>All menus for today</strong>
+<% if !@tweets_all.empty? %>
+  <% @tweets_all.reverse_each do |tweet| %>
+    <%= tweet %> 
+<% end %>
+<% else %>
+  <p>No menus available today</p>
+<% end %>
+</div>

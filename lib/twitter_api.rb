@@ -11,10 +11,12 @@ class TwitterAPI
     end 
  end  
   
-  def get_tweets() 
-    @client.search('#PT_FOODOO').take(3).each do |tweet|
-      puts tweet.full_text
-    end
+  def get_tweets(res) 
+    @client.search("from:post_taste #{res}").take(10).each
+  end
+
+  def get_all_tweets() 
+    @client.search("from:post_taste}").take(20).each
   end
 
   def post_tweet(content)
