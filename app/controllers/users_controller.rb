@@ -24,6 +24,17 @@ class UsersController < ApplicationController
       render 'edit'
     end
   end
+    
+  def destroy   
+    @product = User.find(params[:id])   
+    if @product.delete   
+      flash[:notice] = 'Product deleted!'   
+      redirect_to action: 'index'   
+    else   
+      flash[:error] = 'Failed to delete this product!'   
+      render :destroy   
+    end   
+  end 
 
   def create
     @user = User.new(user_params)
