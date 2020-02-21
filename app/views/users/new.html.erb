@@ -1,16 +1,16 @@
-<%= form_with scope: :user, url: users_path, local: true do |form| %>
-
-   <p>
-     <%= form.label :email %><br>
-     <%= form.text_field :email %>
-   </p>
-  
-   <p>
-   <%= form.hidden_field :live, value: 'true'  %>
-   </p>
-
-   <p>
-     <%= form.submit %>
-   </p>
-   
- <% end %>
+<div class='center'>
+  <h2 class='header'>Add new user</h2>
+  <%= form_with scope: :user, url: users_path, local: true do |form| %>
+  <div class='form-container'>
+    <div class='email-container'>
+      <%= form.label :email %><br>
+      <%= form.text_field :email %>
+    </div>
+    <div>
+    <div class='center row'>
+      <%= form.hidden_field :live, value: 'true'  %>  
+      <%= form.submit(class: 'button-b') %>
+    </div>
+   </div>
+  <% end %>
+ </div>

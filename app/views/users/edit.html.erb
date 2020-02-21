@@ -1,21 +1,24 @@
 
-<div>   
-  
-<%= form_for @user, url: { action: :update } do |f| %>   
-    <p>     
-     <div>   
-            <label>Email</label>   
-            <%= f.text_field :email %>   
-     </div>   
-  
-     <div>   
-            <label>Subscription Status</label>   
-            <%= f.text_field :live %>   
-     </div>     
-      </p>   
-   <div>   
-      <%= link_to "Back", { controller: "users", action: "index" } %>   
-      <%= f.submit "Update User" %>   
-    </div>   
-<% end %>   
+<div class='center'> 
+       <h2 class='header'>Edit user <%=@user.email%></h2>
+       <div class='form-container'>
+              <%= form_for @user, url: { action: :update } do |f| %>
+                     <div class='email-container'>    
+                            <div>   
+                                   <label>Email</label>  <br /> 
+                                   <%= f.text_field :email %>   
+                            </div>   
+
+                            <div>   
+                                   <label>Subscription Status</label> <br />  
+                                   <%= f.text_field :live %>   
+                            </div>     
+                            <div class='center row min-margin justify-space'>   
+                                   <%= link_to("Back", { controller: "users", action: "index" }, class: 'button')%>   
+                                   <%= f.submit("Update User", class: 'button-i') %>   
+                            </div>   
+                     
+                     </div>
+              <% end %>
+       </div>
 </div> 

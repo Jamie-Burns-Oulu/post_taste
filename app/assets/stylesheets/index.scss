@@ -13,12 +13,31 @@ a.button {
     align-items: center;
     color: black;
     transition: color 0.2s, border-color 0.2s;
+    &-s {
+        width: 80%;
+        // height: 15px !important;
+        border-radius: 5px;
+        padding: 5px;
+        font-weight: 200;
+        border: 1px solid rgba(0, 0, 0, 0.438);
+        text-decoration: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: black;
+        transition: color 0.2s, border-color 0.2s;
+        &:hover {
+            color: $twitter_color;
+            border-color: $twitter_color;
+        }
+    }
     &:hover {
         color: $twitter_color;
         border-color: $twitter_color;
     }
     &.active {
         color: $twitter_color;
+        border-color: $twitter_color;
         &:hover {
             color: black;
             border-color: black;
@@ -29,9 +48,15 @@ div.center {
     display: flex;
     justify-content: center;
     flex-direction: column;
-    margin-top: 30px; 
+    margin-top: 30px;
     text-align: center;
-    & #landing-header {
+    &.row {
+        flex-direction: row;
+    }
+    &.min-margin {
+        margin-top: 5px; 
+    }
+    & .header {
         font-weight: 200;
     }
 }
@@ -46,4 +71,61 @@ div.center {
     padding: 20px;
     padding-right: 0;
     border-top: 1px solid rgba(0, 0, 0, 0.226);  
+}
+.justify-space a {
+    margin-right: 30px;
+}
+
+.button-b {
+    width: 110px;
+    height: 30px;
+    border-radius: 5px;
+    padding: 5px;
+    font-weight: 200;
+    font-size: 15px;
+    border: 1px solid rgba(0, 0, 0, 0.438);
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    align-items: center;
+    color: black;
+    background: white;
+    transition: color 0.2s, border-color 0.2s;
+    &:hover {
+        color: $twitter_color;
+        border-color: $twitter_color;
+    }
+}
+.button-i {
+    width: 110px;
+    height: 32px;
+    border-radius: 5px;
+    padding: 5px;
+    font-weight: 200;
+    font-size: 15px;
+    border: 1px solid rgba(0, 0, 0, 0.438);
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    align-items: center;
+    color: black;
+    background: white;
+    transition: color 0.2s, border-color 0.2s;
+    &:hover {
+        color: $twitter_color;
+        border-color: $twitter_color;
+    }
+}
+.strong {
+    font-weight: 500 !important;
+}
+.align {
+    &-right {
+        text-align: right;
+    }
+    &-center {
+        text-align: center;
+    }
 }
