@@ -5,17 +5,73 @@
   </head>
   <body>
   <h1>Welcome to PostTaste</h1>   
-  <div>
-    <strong>All menus for today</strong>
-    <% if !@tweets_all.empty? %>
+  <div class="tweet_container">
+  <% if !@tweets_all.empty? %>
+    <% @tweet_index = 0 %>
     <% @tweets_all.reverse_each do |tweet| %>
-      <%= tweet %> 
+      <% emoji_array = ["🍴", "🍽", "🍕", "🍗", "🍔", "🍰", "🌮", "🥗", "🥩", "🥦", "🥓", "🥨", "🍻", "🌯", "🍩", "🍤"]
+         header_end = 0
+         for i in emoji_array
+           if tweet.index(i)
+             header_end = tweet.index(i)
+             break
+           end
+         end
+         @tweet_header = tweet[0..header_end]
+         @tweet_content = tweet[header_end + 1..] %>
+      <div class="tweet">
+        <div class="tweet_header_container">
+          <div class='tweet_icon'>
+          <%= image_tag("iu-8.png") %>
+          </div>
+          <div class='twitter_info'>
+            <div class='twitter_name'>
+              <a href='https://twitter.com/post_taste'>PT🍴⚡️<%= image_tag("iu-9.png", class: "verified") %></a>
+            </div>
+            <div class='twitter_handle'>
+              @post_taste
+            </div>
+          </div>
+          </div>
+        <div class="tweet_content">
+          <%= @tweet_header %>
+          <% @content = "<p>"
+             for i in 0..(@tweet_content.length - 1)
+               if @tweet_content[i..i + 2] == "… h"
+                 @content += "...</p><p><a href='#{@tweet_content[i + 1..-1]}'>#{@tweet_content[i..-1]}</a>"
+                 break
+               end
+               if i > 1 && @tweet_content[i + 1].numeric?
+                 if @tweet_content[i + 2] == "." || @tweet_content[i + 2] == "…"
+                   @content += "</p><p>"
+                 end
+               end
+               if @tweet_content[i + 1] == "#"
+                 @content += "</p><p>"
+               end
+               @content += @tweet_content[i]
+             end
+             @content += "</p>" %>
+          <%= @content.html_safe %>
+        </div>
+        <div class='tweet_footer'>
+          <% this_tweet = @tweets_all_time[@tweet_index]
+             if this_tweet
+               months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+               hour = this_tweet.hour
+               min = String(this_tweet.min).length == 1 ? "0#{this_tweet.min}" : this_tweet.min
+               month = months[this_tweet.month - 1]
+               day = this_tweet.day
+               year = this_tweet.year
+             end %>
+          <%= "#{hour}:#{min} · #{month} #{day}, #{year} · post_taste" %>
+        </div>
+      </div>  
+      <% @tweet_index = @tweet_index + 1 %>
     <% end %>
-    <% else %>
-     <p>No menus available today</p>
     <% end %>
-  </div>
+</div>
     <p>Thanks for joining and have a great day!</p>
     <p>The PostTaste Team</p>
-  </body>
+</body>
 </html>

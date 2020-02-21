@@ -2,42 +2,25 @@ require '././lib/twitter_api'
 
 class UserMailer < ApplicationMailer
 
-  @@time = Time.new
-  @@timeString = @@time.strftime("%Y-%m-%d")     
   @@twitterAPI = TwitterAPI.new
 
-   default from: 'notifications@example.com'
- 
-   def welcome_email
-            
-     @tweets_all = Array[]
+  default from: 'notifications@example.com'
 
-     @@twitterAPI.get_all_tweets().each do |tweet|          
-         # Checking tweets creation date against today's date             
-         @createdString = tweet.created_at.to_s
-         if @createdString[0..9] == @@timeString 
-             @tweets_all.push(tweet.full_text)
-         end            
-     end
-     @user = params[:user]  
-     mail(to: @user.email, subject: 'Welcome to PostTaste')
-   end
- 
-    def daily_summary        
-      @tweets_all = Array[]
-      @tweets_time = Array[]
+  def welcome_email  
+    @@twitterAPI.get_all_tweets()   
+    @tweets_all = @@twitterAPI.get_tweets_all()
+    @tweets_all_time = @@twitterAPI.get_tweets_all_time() 
+    @user = params[:user]  
+    mail(to: @user.email, subject: 'Welcome to PostTaste')
+  end
 
-      @@twitterAPI.get_all_tweets().each do |tweet|          
-        # Checking tweets creation date against today's date             
-        @createdString = tweet.created_at.to_s
-        if @createdString[0..9] == @@timeString 
-          @tweets_all.push(tweet.full_text)
-          @tweets_time.push(tweet.created_at)
-        end            
-      end     
-      @email = params[:email] 
-      mail(to: @email, subject: 'Welcome to PostTaste')  
-    end
+  def daily_summary            
+    @@twitterAPI.get_all_tweets()   
+    @tweets_all = @@twitterAPI.get_tweets_all()
+    @tweets_all_time = @@twitterAPI.get_tweets_all_time()
+    @@twitterAPI.get_all_tweets()  
+    @email = params[:email] 
+    mail(to: @email, subject: 'PostTaste Daily Summary')  
+  end
 
-   
 end
