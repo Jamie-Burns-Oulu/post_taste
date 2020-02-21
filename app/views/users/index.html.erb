@@ -13,7 +13,7 @@
           <td><%= user.live %></td>
           <td class='action'><%= link_to('Show', user_path(user), class: 'button-s') %></td>
           <td class='action'><%= link_to('Edit', edit_user_path(user), class: 'button-s') %></td>
-          <td class='action'><button class='button-b'>Delete</button></td>
+          <td class='action'><%= link_to('Delete', user_path(user), method: :delete, class: 'button-s') %></td>
         </tr>
       <% end %>
     </table>

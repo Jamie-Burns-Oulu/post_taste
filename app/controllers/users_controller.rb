@@ -26,12 +26,12 @@ class UsersController < ApplicationController
   end
     
   def destroy   
-    @product = User.find(params[:id])   
-    if @product.delete   
-      flash[:notice] = 'Product deleted!'   
+    @user = User.find(params[:id])   
+    if @user.delete   
+      flash[:notice] = 'User deleted!'   
       redirect_to action: 'index'   
     else   
-      flash[:error] = 'Failed to delete this product!'   
+      flash[:error] = 'Failed to delete this user!'   
       render :destroy   
     end   
   end 
