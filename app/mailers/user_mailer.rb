@@ -25,12 +25,14 @@ class UserMailer < ApplicationMailer
  
     def daily_summary        
       @tweets_all = Array[]
+      @tweets_time = Array[]
 
       @@twitterAPI.get_all_tweets().each do |tweet|          
         # Checking tweets creation date against today's date             
         @createdString = tweet.created_at.to_s
         if @createdString[0..9] == @@timeString 
           @tweets_all.push(tweet.full_text)
+          @tweets_time.push(tweet.created_at)
         end            
       end     
       @email = params[:email] 
