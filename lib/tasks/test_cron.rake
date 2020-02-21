@@ -2,9 +2,11 @@ require './lib/twitter_api'
 require './lib/email_sender'
 require './lib/crawler/Tweeter'
 require './lib/crawler/test_crawler'
+require '././app/mailers/daily_email'
 
 twitter_api = TwitterAPI.new
 email_sender = MenuEmailer.new
+daily_email = SendDailyMenu.new
 
 #TODO Combine tasks into one cronjob, order to be 1.web-scrape 2.tweet 3.email
 
@@ -40,7 +42,7 @@ namespace :email_cron do
    desc "Send emails using email_sender"
    task send_emails: :environment do 
       puts "Sending emails..."
-      email_sender.send_mail
+      daily_email.run
       puts "Emails sent"
    end
 end 

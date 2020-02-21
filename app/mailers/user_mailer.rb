@@ -9,9 +9,7 @@ class UserMailer < ApplicationMailer
    default from: 'notifications@example.com'
  
    def welcome_email
-     @user = params[:user]
-     @restaurants = Restaurant.all             
-
+            
      @tweets_all = Array[]
 
      @@twitterAPI.get_all_tweets().each do |tweet|          
@@ -21,8 +19,23 @@ class UserMailer < ApplicationMailer
              @tweets_all.push(tweet.full_text)
          end            
      end
+     @user = params[:user]  
      mail(to: @user.email, subject: 'Welcome to PostTaste')
    end
  
+    def daily_summary        
+      @tweets_all = Array[]
+
+      @@twitterAPI.get_all_tweets().each do |tweet|          
+        # Checking tweets creation date against today's date             
+        @createdString = tweet.created_at.to_s
+        if @createdString[0..9] == @@timeString 
+          @tweets_all.push(tweet.full_text)
+        end            
+      end     
+      @email = params[:email] 
+      mail(to: @email, subject: 'Welcome to PostTaste')  
+    end
+
    
 end
