@@ -24,6 +24,17 @@ class UsersController < ApplicationController
       render 'edit'
     end
   end
+    
+  def destroy   
+    @user = User.find(params[:id])   
+    if @user.delete   
+      flash[:notice] = 'User deleted!'   
+      redirect_to action: 'index'   
+    else   
+      flash[:error] = 'Failed to delete this user!'   
+      render :destroy   
+    end   
+  end 
 
   def create
     @user = User.new(user_params)

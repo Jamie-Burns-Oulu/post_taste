@@ -1,10 +1,15 @@
-
-<p>
-<strong>Email:</strong>
-<%= @user.email %>
-</p>
-
-<p>
-<strong>Live:</strong>
-<%= @user.live %>
-</p>
+<div class='center'>
+    <h2 class='header'> User <%=@user.email%></h2>
+    <div class='table-container'>
+        <table class='user-table'>
+            <tr>
+                <td class='strong'>Email</td>
+                <td class='align-right'><%=@user.email%></td>
+            </tr>
+            <tr>
+                <td class='strong'>Live</td>
+                <td class='align-right'><%=@user.live%></td>
+            </tr>
+        </table>
+    </div>
+</div>

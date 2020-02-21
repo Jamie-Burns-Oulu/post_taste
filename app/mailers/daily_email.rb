@@ -1,4 +1,4 @@
-class SendDailyMenu
+class DailyEmail
     def run
       @users = User.all
       @users.each do |user|     

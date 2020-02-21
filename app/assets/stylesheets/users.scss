@@ -1,3 +1,41 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+.table-container {
+    display: flex;
+    justify-content: center;
+    table.user-table {
+        width: 40%;
+        text-align: left;
+        font-weight: 300;
+        
+        &, th, td {
+            border-collapse: collapse;
+            border: 1px solid black;
+            padding: 10px;
+        }
+    }
+}
+.form-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    div.email-container {
+        & label {
+            font-weight: 200;
+        }
+        & input[type=text] {
+            margin-top: 10px;
+            width: 20%;
+            margin-bottom: 25px;
+            height: 15px;
+            padding: 10px;
+            font-size: 15px;
+            border-radius: 10px;
+            border: 1px solid rgba(0, 0, 0, 0.295);
+            &:not(:last-child) {
+                margin-bottom: 5px;
+            }
+        }
+    }
+}

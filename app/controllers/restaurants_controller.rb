@@ -3,40 +3,21 @@ require 'date'
 
 class RestaurantsController < ApplicationController
 
-    @@time = Time.new
-    @@timeString = @@time.strftime("%Y-%m-%d")     
     @@twitterAPI = TwitterAPI.new
   
     def index
-        @restaurants = Restaurant.all             
-
-        @tweets_all = Array[]
-        @tweet_time = Array[]
-        @@twitterAPI.get_all_tweets().each do |tweet|          
-            # Checking tweets creation date against today's date             
-            @createdString = tweet.created_at.to_s
-            if @createdString[0..9] == @@timeString 
-                @tweets_all.push(tweet.full_text)
-                @tweet_time.push(tweet.created_at)
-            end            
-        end
+        @restaurants = Restaurant.all          
+        @@twitterAPI.get_all_tweets()   
+        @tweets_all = @@twitterAPI.get_tweets_all()
+        @tweet_all_time = @@twitterAPI.get_tweets_all_time()       
     end
 
     def show
         @restaurants = Restaurant.all
-        @restaurant = Restaurant.find(params[:id])      
-
-        @tweets_one = Array[]
-        @tweets_time = Array[]
-
-        @@twitterAPI.get_tweets(@restaurant.name).each do |tweet|  
-            # Checking tweets creation date against today's date   
-            @createdString = tweet.created_at.to_s
-            if @createdString[0..9] == @@timeString 
-                @tweets_one.push(tweet.full_text)
-                @tweets_time.push(tweet.created_at)
-            end        
-        end
+        @restaurant = Restaurant.find(params[:id])  
+        @@twitterAPI.get_tweets(@restaurant.name)
+        @tweets_one = @@twitterAPI.get_tweets_one()
+        @tweets_one_time = @@twitterAPI.get_tweets_one_time()
     end
 
     def create

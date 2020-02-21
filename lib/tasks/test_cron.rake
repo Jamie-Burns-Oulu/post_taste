@@ -4,7 +4,7 @@ require './lib/crawler/test_crawler'
 require '././app/mailers/daily_email'
 
 twitter_api = TwitterAPI.new
-daily_email = SendDailyMenu.new
+daily_email = DailyEmail.new
 
 #TODO Combine tasks into one cronjob, order to be 1.web-scrape 2.tweet 3.email
 

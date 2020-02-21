@@ -1,18 +1,21 @@
-<h1>Listing Users</h1>
- 
-<table>
-  <tr>
-    <th>Email</th>
-    <th>Live</th>
-    <th colspan="2"></th>
-  </tr>
- 
-  <% @users.each do |user| %>
-    <tr>
-      <td><%= user.email %></td>
-      <td><%= user.live %></td>
-      <td><%= link_to 'Show', user_path(user) %></td>
-      <td><%= link_to 'Edit', edit_user_path(user) %></td>
-    </tr>
-  <% end %>
-</table>
+<div class='center'>
+  <h2 class='header'>Listing Users</h1>
+  <div class='table-container'>
+    <table class='user-table'>
+      <tr>
+        <th>Email</th>
+        <th>Live</th>
+        <th colspan="3" class='align-center'>Actions</th>
+      </tr>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.email %></td>
+          <td><%= user.live %></td>
+          <td class='action'><%= link_to('Show', user_path(user), class: 'button-s') %></td>
+          <td class='action'><%= link_to('Edit', edit_user_path(user), class: 'button-s') %></td>
+          <td class='action'><%= link_to('Delete', user_path(user), method: :delete, class: 'button-s') %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
