@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
 
-  def index
-    @users = User.all
-  end
+  # def index
+  #   @users = User.all
+  # end
 
   def show
     @user = User.find(params[:id])
@@ -11,30 +11,30 @@ class UsersController < ApplicationController
   def new
   end
 
-  def edit
-    @user = User.find(params[:id])
-  end
+  # def edit
+  #   @user = User.find(params[:id])
+  # end
 
-  def update
-    @user = User.find(params[:id])
+  # def update
+  #   @user = User.find(params[:id])
    
-    if @user.update(user_params)
-      redirect_to @user
-    else
-      render 'edit'
-    end
-  end
+  #   if @user.update(user_params)
+  #     redirect_to @user
+  #   else
+  #     render 'edit'
+  #   end
+  # end
     
-  def destroy   
-    @user = User.find(params[:id])   
-    if @user.delete   
-      flash[:notice] = 'User deleted!'   
-      redirect_to action: 'index'   
-    else   
-      flash[:error] = 'Failed to delete this user!'   
-      render :destroy   
-    end   
-  end 
+  # def destroy   
+  #   @user = User.find(params[:id])   
+  #   if @user.delete   
+  #     flash[:notice] = 'User deleted!'   
+  #     redirect_to action: 'index'   
+  #   else   
+  #     flash[:error] = 'Failed to delete this user!'   
+  #     render :destroy   
+  #   end   
+  # end 
 
   def create
     @user = User.new(user_params)

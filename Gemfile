@@ -53,3 +53,5 @@ gem 'twitter'
 gem 'figaro'
 
 gem 'finishing_moves'
+
+gem "nokogiri", ">= 1.10.8"

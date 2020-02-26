@@ -1,24 +1,10 @@
-# README
+# ⚡️PostTaste🍴
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Ruby on Rails website that enables people to quickly access University of Oulu restaurant menus. 
 
-Things you may want to cover:
+* Integrated daily email service
 
-* Ruby version
+* Using Twitter API 
 
-* System dependencies
+Follow us on Twitter [@post\_taste](https://twitter.com/post_taste) 
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
