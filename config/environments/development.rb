@@ -62,6 +62,11 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :smtp
 
+  config.action_controller.asset_host = 'posttaste.herokuapp.com'
+
+  config.action_mailer.asset_host = 'posttaste.herokuapp.com'
+
+
   config.action_mailer.smtp_settings = {
      address:              'smtp.gmail.com',
      port:                 587,

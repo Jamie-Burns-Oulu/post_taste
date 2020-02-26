@@ -63,11 +63,12 @@ div.center {
 
 .main_footer {
     height: 80px;
-    display: flex;
+    display: inline-block;
     margin-top: 50px;
     width: 100%;
     box-sizing: border-box;
     align-items: center;
+    text-align: center;
     padding: 20px;
     padding-right: 0;
     border-top: 1px solid rgba(0, 0, 0, 0.226);  
