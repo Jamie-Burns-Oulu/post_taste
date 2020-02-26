@@ -6,5 +6,7 @@ Ruby on Rails website that enables people to quickly access University of Oulu r
 
 * Using Twitter API 
 
+Check out today's menus [here](https://posttaste.herokuapp.com/restaurants)
+
 Follow us on Twitter [@post\_taste](https://twitter.com/post_taste) 
 
